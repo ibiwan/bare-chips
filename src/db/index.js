@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 
-import { createAdmin, createTables, init, summarize } from './tasks.js';
+import { createAdmin, createTables, summarize } from './tasks.js';
 
 const options = {}
 

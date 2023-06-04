@@ -1,4 +1,4 @@
-import { loginRoute } from "../auth/identity.js"
+import { loginRoute } from "#auth/identity.js"
 
 export const init = app => {
   loginRoute(app);

@@ -1,6 +1,6 @@
 import { hashSync } from 'bcrypt'
 
-import { insertPlayer } from '../feature/player/index.js'
+import { insertPlayer } from '#feature/player/index.js'
 
 import { schemae } from './schemae.js';
 

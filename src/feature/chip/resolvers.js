@@ -1,7 +1,7 @@
-import { getAllOf, resolveOneByParent, resolveOwner } from "../../util/resolverTemplates.js"
-import { id } from "../../util/sqlTemplates.js";
+import { getAllOf, resolveOneByParent, resolveOwner } from "#util/resolverTemplates.js"
+import { id } from "#util/sqlTemplates.js";
 
-import { chipsetId, selectChipsetById } from "../chipset/sql.js";
+import { chipsetId, selectChipsetById } from "#feature/chipset/sql.js";
 
 import { insertChip, selectAllChips, selectChipById } from "./sql.js"
 
@@ -9,7 +9,6 @@ export const resolvers = {
   Query: {
     getAllChips: getAllOf(selectAllChips),
     getChipById: (_parent, input, contextValue, _info) => {
-      console.log({ contextValue })
       const { db, authuser: { id: _ownerId } } = contextValue
       const { id } = input;
 

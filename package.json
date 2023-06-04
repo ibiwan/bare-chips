@@ -7,7 +7,16 @@
     "start": "nodemon src/index.js --debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
+  "type":"module",
+  "imports":{
+    "#root/*.js": "./src/*.js",
+    "#auth/*.js": "./src/auth/*.js",
+    "#db/*.js": "./src/db/*.js",
+    "#feature/*.js": "./src/feature/*.js",
+    "#gql/*.js": "./src/gql/*.js",
+    "#http/*.js": "./src/http/*.js",
+    "#util/*.js": "./src/util/*.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

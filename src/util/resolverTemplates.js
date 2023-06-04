@@ -1,4 +1,4 @@
-import { selectPlayerById } from "../feature/player/sql.js"
+import { selectPlayerById } from "#feature/player/sql.js"
 
 export const resolveOwner = (parent, _input, contextValue, _info) => {
   const { db, authuser: { id: ownerId } } = contextValue

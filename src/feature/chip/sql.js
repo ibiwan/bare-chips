@@ -1,6 +1,6 @@
-import { id, ownerId, selectAll, selectBy } from "../../util/sqlTemplates.js";
-import { chipsetId, chipsetTable } from "../chipset/sql.js";
-import { playerTable } from "../player/sql.js";
+import { id, ownerId, selectAll, selectBy } from "#util/sqlTemplates.js";
+import { chipsetId, chipsetTable } from "#feature/chipset/sql.js";
+import { playerTable } from "#feature/player/sql.js";
 
 export const chipTable = 'chip'
 export const chipId = 'chipId'

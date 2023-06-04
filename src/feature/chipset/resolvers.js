@@ -1,7 +1,7 @@
-import { getAllOf, resolveManyByParent, resolveOwner } from "../../util/resolverTemplates.js";
-import { id } from "../../util/sqlTemplates.js";
+import { getAllOf, resolveManyByParent, resolveOwner } from "#util/resolverTemplates.js";
+import { id } from "#util/sqlTemplates.js";
 
-import { insertChip, selectChipsByChipsetId } from "../chip/index.js"
+import { insertChip, selectChipsByChipsetId } from "#feature/chip/index.js"
 
 import { chipsetId, insertChipset, selectAllChipsets, selectChipsetById } from "./sql.js";
 
@@ -11,7 +11,6 @@ export const resolvers = {
   },
   Mutation: {
     createChipset: (_parent, input, contextValue, _info) => {
-      console.log({ contextValue })
       const { chips, ...flatChipsetInputs } = input.createChipsetInput
       const { db, authuser: { id: ownerId } } = contextValue
 

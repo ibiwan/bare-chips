@@ -1,5 +1,5 @@
-import { id, ownerId, selectAll, selectBy } from "../../util/sqlTemplates.js";
-import { playerTable } from "../player/sql.js";
+import { id, ownerId, selectAll, selectBy } from "#util/sqlTemplates.js";
+import { playerTable } from "#feature/player/sql.js";
 
 export const houseTable = 'house'
 export const houseId = 'houseId'

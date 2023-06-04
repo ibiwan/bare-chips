@@ -1,4 +1,4 @@
-import { id, ownerId, selectAll, selectBy } from "../../util/sqlTemplates.js";
+import { id, ownerId, selectAll, selectBy } from "#util/sqlTemplates.js";
 
 export const playerTable = 'player'
 export const playerId = 'playerId'
