@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "baseUrl": ".",
+    "module":"NodeNext",
+    "moduleResolution": "nodenext",
+    "target": "ES2022",
+    "paths": {
+      "#service/*": ["./src/service/*"],
+      "#auth/*": ["./src/auth/*"],
+      "#http/*": ["./src/http/*"],
+      "#util/*": ["./src/util/*"],
+      "#gql/*": ["./src/gql/*"],
+      "#db/*": ["./src/db/*"]
+    }
+  }
+}

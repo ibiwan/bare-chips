@@ -1,0 +1,3 @@
+references two ledgers per row
+currency for both much match
+date, time, amount, reason

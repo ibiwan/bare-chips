@@ -2,25 +2,28 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 
-import { register as registerDb } from './db/index.js'
-import { init as initHttp } from './http/routes.js';
-import { init as initGql } from './gql/index.js';
-import { getUser } from './auth/identity.js';
+import { getUser } from '#auth/getUser.middleware.js';
+import { debugExpress } from '#util/debugExpress.js';
+import { init as initHttp } from '#http/routes.js';
+import { init as initGql } from '#gql/index.js';
 
-const app = express()
+import { diMiddleware } from './di.container.js';
 
-const port = 3000
+const app = express();
+
+const port = 3000;
 app.use(
   cors(),
   bodyParser.json(),
-  registerDb(),
+  diMiddleware,
+  debugExpress,
   getUser,
-)
+);
 
-initHttp(app)
+initHttp(app);
 
-app.use(await initGql(app))
+app.use(await initGql(app));
 
 app.listen(port, () => {
-  console.log('listening on port ' + port)
-})
+  console.info(`listening on port ${port}`);
+});

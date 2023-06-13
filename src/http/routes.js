@@ -1,12 +1,16 @@
-import { loginRoute } from "#auth/identity.js"
+import { loginRoute } from '#auth/route.login.js';
 
-export const init = app => {
+export const init = (app) => {
   loginRoute(app);
+  // logout route
+  // token refresh route
   app.get(
     '/',
-    (req,
-      res) => {
-      res.send('hiya werlz')
-    }
-  )
-}
+    (
+      req,
+      res,
+    ) => {
+      res.send('hiya werlz');
+    },
+  );
+};

@@ -1,0 +1,12 @@
+has 1 game and 0+ players
+(FIXME: move dealer from game to hand, no join table)
+
+// has active/inactive players
+//  (activate with ante if applicable)
+//  (inactivate on fold)
+ 
+ export const PlayerHandMode = {
+  noante: 'noante',
+  ante: 'ante',
+  fold: 'fold',
+}
