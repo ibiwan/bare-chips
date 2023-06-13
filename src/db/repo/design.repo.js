@@ -18,7 +18,7 @@ export const makeDesignRepo = ({ dbService: { db } }) =>
      * @param {{name, ownerId, houseId}} data
      */
     create: (data) => {
-      console.log({ data });
+      // console.log({ data });
       const { changes, lastInsertRowid } = db.prepare(createDesign).run(data);
       if (changes !== 1) { throw new Error('could not create design'); }
       return lastInsertRowid;

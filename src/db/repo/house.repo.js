@@ -26,8 +26,9 @@ export const makeHouseRepo = ({ dbService: { db } }) =>
       if (changes !== 1) { throw new Error('could not create house'); }
       return lastInsertRowid;
     },
-    delete: (houseId) => {
-      const result = db.prepare(deleteHouse).run({ houseId });
-      console.log({ result });
+    deleteById: (houseId) => {
+      const { changes } = db.prepare(deleteHouse).run({ houseId });
+
+      return changes > 0;
     },
   });

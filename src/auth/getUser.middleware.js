@@ -2,11 +2,19 @@ export const getUser = (req, _res, next) => {
   const { context: { di: { authService } } } = req;
 
   if (req?.body?.operationName === 'IntrospectionQuery') {
+    // console.log('schema update');
     next();
     return;
   }
 
+  if (req?.originalUrl === '/auth/login') {
+    // console.log('login');
+    // next();
+    // return;
+  }
+
   const auth = req.header('Authorization');
+  console.debug({ auth });
   if (auth) {
     try {
       const authuser = authService.validateJwtAuthHeader(auth);

@@ -12,7 +12,7 @@ export const houseResolvers = {
     createHouse: mr(({ input, houseService, authuser }) =>
       houseService.create(input, authuser.id)),
     deleteHouse: mr(({ input: { houseId }, houseService, authuser }) =>
-      houseService.delete(houseId, authuser.id)),
+      houseService.deleteHouse(houseId, authuser.id)),
     invitePlayerToHouse: (_parent, input, contextValue, _info) => {
       const { invitePlayerToHouseInput: { playerId, houseId } } = input;
       const { di: { hostService }, authuser: { id: ownerId } } = contextValue;

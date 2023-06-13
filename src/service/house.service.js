@@ -1,10 +1,8 @@
-import { throwDNE } from '#util/exceptions.js';
-
 export const makeHouseService = (
   { houseRepo, playerRepo },
 ) =>
   ({
-    allHouses: (ownerId) =>
+    getAllHouses: (ownerId) =>
       houseRepo.getAll().filter((house) =>
         house.ownerId === ownerId),
     /**
@@ -17,11 +15,8 @@ export const makeHouseService = (
 
       return newHouse;
     },
-    deleteHouse: (houseId, _ownerId) => {
-      const house = houseRepo.getById(houseId) ?? throwDNE('house', houseId);
-      const _result = houseRepo.deleteById(houseId);
-      return house;
-    },
+    deleteHouse: (houseId, _ownerId) =>
+      houseRepo.deleteById(houseId),
     getOwner: (house) =>
       playerRepo.getById(house.ownerId),
   });

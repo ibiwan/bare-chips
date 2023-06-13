@@ -28,7 +28,7 @@ export const makePlayerRepo = ({ dbService: { db } }) =>
        * @param {{username, passhash}} data
        */
     create: (data) => {
-      console.log({ data });
+      // console.log({ data });
       const { changes, lastInsertRowid } = db.prepare(createPlayer).run(data);
       if (changes !== 1) { throw new Error('could not create player'); }
       return lastInsertRowid;
