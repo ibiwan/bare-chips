@@ -1,7 +1,7 @@
 import { templateGrid } from '#db/const/_template.db.const.js';
 import {
   selectAll, selectBy,
-} from '#db/query/_common.db.const.js';
+} from '#db/query/_common.db.query.js';
 import { idField, ownerIdField } from '#db/const/_common.db.const.js';
 
 export const makeTemplateRepo = ({ dbService: { db } }) =>

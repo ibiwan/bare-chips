@@ -1,6 +1,7 @@
-import { chipGrid, colorField, valueField } from '#db/const/chip.db.const.js';
-import { designGrid, designIdField } from '#db/const/design.db.const.js';
-import { idField } from '#db/const/_common.db.const.js';
+import {
+  colorField, designIdField, idField, valueField,
+} from '#db/const/fields.db.const.js';
+import { chipGrid, designGrid } from '#db/const/grids.db.const.js';
 
 export const createChipGrid = `
   CREATE TABLE IF NOT EXISTS ${chipGrid} (

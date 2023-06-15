@@ -1,25 +1,4 @@
-// import {
-//   connectHousePlayer, createHouse, deleteHouse, selectHouseById, selectPlayersForHouseById,
-// } from '../house/repo.js';
-
-// export const hostFlows = (db) => ({
-//   createHouse: (actorId, name) => {
-//     const result = db.prepare(createHouse).run({ name, ownerId: actorId });
-//     return db.prepare(selectHouseById).get({ id: result.lastInsertRowid });
-//   },
-//   getHouseById: (houseId) => db.prepare(selectHouseById).get({ id: houseId }),
-//   deleteHouse: (houseId) => {
-//     console.log(deleteHouse, { houseId });
-//     const result = db.prepare(deleteHouse).run({ houseId });
-//     console.log({ result });
-
-//     return true;
-//   },
-//   invitePlayerToHouse: (actorId, playerId, houseId) => {
-//     const _playerHouseResult = db.prepare(connectHousePlayer).run({ playerId, houseId });
-//     return db.prepare(selectPlayersForHouseById).all({ houseId });
-//   },
-//   createGrid: (_actorId, _houseId, _name, _opts) => { /* opts: number seats, pit boss */ },
+//   createTable: (_actorId, _houseId, _name, _opts) => { /* opts: number seats, pit boss */ },
 //   addDesignToCatalog: (_actorId, _designId, _houseId) => { },
 //   removeDesignFromCatalog: (_actorId, _designId, _houseId) => { },
 //   kickPlayerFromHouse: (_actorId, _playerid, _houseId) => { },
@@ -30,15 +9,21 @@
 //   banDesignFromCatalog: (_actorId, _designId, _houseId) => { },
 // });
 
-export const makeHostService = ({ playerRepo, houseRepo }) =>
+export const makeHostService = ({ playerRepo: _playerRepo, houseRepo }) =>
   ({
-  // createHouse: (ownerId, name) => {
-  //   // const result =
-  //   console.log({ ownerId, name, playerRepo })
-  // },
-    invitePlayerToHouse: (actorId, playerId, houseId) => {
-      const _playerHouseResult = db.prepare(connectHousePlayer).run({ playerId, houseId });
-      return db.prepare(selectPlayersForHouseById).all({ houseId });
-    },
+    /**
+      * @param {{name}} data
+      * @param {*} ownerId
+      */
+    createHouse: (data, ownerId) => {
+      console.log('house.service.createHouse', { data });
+      const newId = houseRepo.create({ ...data, ownerId });
+      const newHouse = houseRepo.getById(newId);
 
+      return newHouse;
+    },
+    deleteHouse: (houseId, _ownerId) =>
+      houseRepo.deleteById(houseId),
+    invitePlayerToHouse: ({ actorId: _actorId, playerId, houseId }) =>
+      houseRepo.invitePlayer({ playerId, houseId }),
   });

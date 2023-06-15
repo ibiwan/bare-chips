@@ -2,6 +2,7 @@ import { hashSync } from 'bcrypt';
 
 import { createAdminPlayer } from '#db/query/player.db.query.js';
 
+import { populateCurrencyGrid } from '#db/query/currency.db.query.js';
 import { schemae } from './schemae.js';
 
 const admin = {
@@ -24,6 +25,14 @@ export const createAdmin = (db) => {
     if (e.message !== 'UNIQUE constraint failed: player.username') {
       console.error('error creating admin player', { e });
     }
+  }
+};
+
+export const createDollar = (db) => {
+  try {
+    db.prepare(populateCurrencyGrid).run();
+  } catch (e) {
+    console.log("couldn't create dollar", e);
   }
 };
 

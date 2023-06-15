@@ -13,12 +13,9 @@ const throwAuth = (reason) => {
 export const makeAuthService = ({ playerService }) =>
   ({
     loginWithUsernamePassword: (username, password) => {
-      console.log('login', { username, password });
       const player = playerService.getPlayerByUsername(username) ?? throwAuth('no player for username');
       const passhash = player.passhash ?? throwAuth();
-      console.log({ password, passhash });
       const _valid = compareSync(password, passhash) || throwAuth('invalid hash');
-      console.log({ _valid });
       const token = jwt.sign(
         {
           username: player.username,
@@ -32,11 +29,8 @@ export const makeAuthService = ({ playerService }) =>
       return { token, expiry };
     },
     validateJwtAuthHeader: (authHeader) => {
-      console.log({ authHeader });
       const [bearer, token, ..._more] = authHeader.split(' ');
       if (bearer !== 'Bearer') throwAuth();
-
-      console.log({ token });
 
       let payload;
       try {

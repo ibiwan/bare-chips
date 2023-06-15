@@ -1,7 +1,7 @@
 import { metaResolver } from '#gql/resolvers/_common.gql.resolvers.js';
 
-const mr = metaResolver(({ houseService }) =>
-  ({ houseService }));
+const mr = metaResolver(({ houseService, hostService }) =>
+  ({ houseService, hostService }));
 
 export const houseResolvers = {
   Query: {
@@ -9,16 +9,12 @@ export const houseResolvers = {
       houseService.getAllHouses(authuser.id)),
   },
   Mutation: {
-    createHouse: mr(({ input, houseService, authuser }) =>
-      houseService.create(input, authuser.id)),
-    deleteHouse: mr(({ input: { houseId }, houseService, authuser }) =>
-      houseService.deleteHouse(houseId, authuser.id)),
-    invitePlayerToHouse: (_parent, input, contextValue, _info) => {
-      const { invitePlayerToHouseInput: { playerId, houseId } } = input;
-      const { di: { hostService }, authuser: { id: ownerId } } = contextValue;
-
-      return hostService.invitePlayerToHouse(ownerId, playerId, houseId);
-    },
+    createHouse: mr(({ input: { createHouseInput }, hostService, authuser }) =>
+      hostService.createHouse(createHouseInput, authuser.id)),
+    deleteHouse: mr(({ input: { houseId }, hostService, authuser }) =>
+      hostService.deleteHouse(houseId, authuser.id)),
+    invitePlayerToHouse: mr(({ input: { playerId, houseId }, hostService, authuser }) =>
+      hostService.invitePlayerToHouse({ playerId, houseId }, authuser.id)),
   },
   House: {
     owner: (parent, _input, contextValue, _info) => {

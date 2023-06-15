@@ -2,15 +2,12 @@ export const designResolvers = {
   Query: {
     getAllDesigns: (_parent, _input, contextValue, _info) => {
       const { di: { designService }, authuser: _user } = contextValue;
-
       return designService.getAllDesigns();
     },
   },
   Mutation: {
     createDesign: (_parent, { createDesignInput }, contextValue, _info) => {
-      const { di: { designService }, authuser, authuser: { id: ownerId } } = contextValue;
-      console.log({ authuser, ownerId });
-
+      const { di: { designService }, authuser: { id: ownerId } } = contextValue;
       return designService.createDesign(createDesignInput, ownerId);
     },
   },
@@ -21,7 +18,6 @@ export const designResolvers = {
     },
     owner: (parent, _input, contextValue, _info) => {
       const { di: { designService }, authuser: _user } = contextValue;
-      console.log({ parent });
       return designService.getOwnerForDesign(parent);
     },
   },

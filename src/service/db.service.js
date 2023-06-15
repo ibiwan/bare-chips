@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3';
 
-import { createAdmin, createTables, summarize } from '../db/tasks.js';
+import { createAdmin, createTables, summarize } from '#db/tasks.js';
 
 export const makeDbService = () => {
   const options = {};

@@ -1,8 +1,6 @@
 import { idField } from '#db/const/_common.db.const.js';
-import { ledgerGrid } from '#db/const/ledger.db.const.js';
-import {
-  amountField, descField, fromLedgerIdField, toLedgerIdField, transactionGrid,
-} from '../const/transaction.db.const.js';
+import { fromLedgerIdField, ledgerGrid, toLedgerIdField } from '#db/const/ledger.db.const.js';
+import { amountField, descField, transactionGrid } from '#db/const/transaction.db.const.js';
 
 export const createTransactionGrid = `
 CREATE TABLE IF NOT EXISTS ${transactionGrid} (

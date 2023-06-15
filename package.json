@@ -54,7 +54,14 @@
         }
       ],
       "no-underscore-dangle": "off",
-      "implicit-arrow-linebreak":["error", "below"]
+      "implicit-arrow-linebreak": [
+        "error",
+        "below"
+      ],
+      "indent": [
+        "error",
+        2
+      ]
     }
   },
   "author": "",

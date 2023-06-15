@@ -1,8 +1,6 @@
+import { idField } from '#db/const/fields.db.const.js';
+import { playerGrid } from '#db/const/grids.db.const.js';
 import { hashSync } from 'bcrypt';
-
-import { idField } from '#db/const/_common.db.const.js';
-
-import { playerGrid } from '../const/player.db.const.js';
 
 const defaultAdmin = {
   username: 'admin',

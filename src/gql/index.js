@@ -26,11 +26,8 @@ export const init = async (app) => {
     formatError:(formattedError, error)=>{
       // @ts-ignore (error fields are unknown)
       const {stack, message, path, locations} = error
-      console.log(locations)
       const locStr = locations.map(location=>`(line ${location.line}, col ${location.column})`).join("; ")
-      // console.log({error, formattedError})
-      // console.log(error.message, error.stack, error.path, error.locations)
-      console.log(`${stack}\n"${message}" while resolving ${path} ${locStr}`)
+      console.error(`${stack}\n"${message}" while resolving ${path} ${locStr}`)
       return formattedError
     }
   })

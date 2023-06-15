@@ -10,10 +10,10 @@
 // place/collect money at table
 // create/duplicate/modify/publish design
 
-import { playerGrid, usernameField } from '#db/const/player.db.const.js';
 import { createPlayer } from '#db/query/player.db.query.js';
-import { selectAll, selectBy } from '#db/query/_common.db.const.js';
-import { idField } from '#db/const/_common.db.const.js';
+import { selectAll, selectBy } from '#db/query/_common.db.query.js';
+import { playerGrid } from '#db/const/grids.db.const.js';
+import { idField, usernameField } from '#db/const/fields.db.const.js';
 
 export const makePlayerRepo = ({ dbService: { db } }) =>
   ({
@@ -23,12 +23,10 @@ export const makePlayerRepo = ({ dbService: { db } }) =>
       db.prepare(selectBy(playerGrid, idField)).get({ id }),
     getByUsername: (username) =>
       db.prepare(selectBy(playerGrid, usernameField)).get({ username }),
-
     /**
        * @param {{username, passhash}} data
        */
     create: (data) => {
-      // console.log({ data });
       const { changes, lastInsertRowid } = db.prepare(createPlayer).run(data);
       if (changes !== 1) { throw new Error('could not create player'); }
       return lastInsertRowid;

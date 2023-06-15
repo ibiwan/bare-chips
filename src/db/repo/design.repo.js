@@ -1,9 +1,9 @@
-import { designGrid } from '#db/const/design.db.const.js';
 import { createDesign } from '#db/query/design.db.query.js';
 import {
   selectAll, selectBy,
-} from '#db/query/_common.db.const.js';
-import { idField, ownerIdField } from '#db/const/_common.db.const.js';
+} from '#db/query/_common.db.query.js';
+import { designGrid } from '#db/const/grids.db.const.js';
+import { idField, ownerIdField } from '#db/const/fields.db.const.js';
 
 export const makeDesignRepo = ({ dbService: { db } }) =>
   ({
@@ -18,7 +18,6 @@ export const makeDesignRepo = ({ dbService: { db } }) =>
      * @param {{name, ownerId, houseId}} data
      */
     create: (data) => {
-      // console.log({ data });
       const { changes, lastInsertRowid } = db.prepare(createDesign).run(data);
       if (changes !== 1) { throw new Error('could not create design'); }
       return lastInsertRowid;

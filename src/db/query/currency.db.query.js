@@ -1,5 +1,6 @@
-import { currencyGrid, usdIndex } from '#db/const/currency.db.const.js';
-import { idField } from '#db/const/_common.db.const.js';
+import { idField } from '#db/const/fields.db.const.js';
+import { currencyGrid } from '#db/const/grids.db.const.js';
+import { usdIndex } from '#db/const/other.db.const.js';
 
 export const createCurrencyGrid = `
   CREATE TABLE IF NOT EXISTS ${currencyGrid} (

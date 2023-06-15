@@ -1,8 +1,8 @@
-import { selectAll, selectBy } from '#db/query/_common.db.const.js';
-import { idField } from '#db/const/_common.db.const.js';
-
-import { houseGrid } from '#db/const/house.db.const.js';
+import { idField } from '#db/const/fields.db.const.js';
+import { houseGrid } from '#db/const/grids.db.const.js';
+import { selectAll, selectBy } from '#db/query/_common.db.query.js';
 import { createHouse, deleteHouse } from '#db/query/house.db.query.js';
+import { invitePlayerToHouse } from '#db/query/peoplejoins/house_to_players.db.query.js';
 
 // created with owner
 // can add tables
@@ -17,7 +17,6 @@ export const makeHouseRepo = ({ dbService: { db } }) =>
       db.prepare(selectAll(houseGrid)).all(),
     getById: (id) =>
       db.prepare(selectBy(houseGrid, idField)).get({ id }),
-
     /**
      * @param {{name, ownerId}} data
      */
@@ -28,7 +27,10 @@ export const makeHouseRepo = ({ dbService: { db } }) =>
     },
     deleteById: (houseId) => {
       const { changes } = db.prepare(deleteHouse).run({ houseId });
-
+      return changes > 0;
+    },
+    invitePlayer: (houseId, playerId) => {
+      const { changes } = db.prepare(invitePlayerToHouse).run({ houseId, playerId });
       return changes > 0;
     },
   });
