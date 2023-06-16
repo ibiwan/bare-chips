@@ -1,31 +1,39 @@
-import gql from 'graphql-tag';
+import { parseGql } from '#util/parseGql.js';
 
-// @ts-ignore (vs doesn't know gql is callable)
-export const houseTypeDefs = gql`
-extend type Query {
-  getAllHouses: [House!]!
-}
+export const houseTypeDefs = parseGql(
+  `#graphql
+    extend type Query {
+      getAllHouses: [House!]!
+    }
 
-extend type Mutation {
-  createHouse(createHouseInput: CreateHouseInput!):House
-  invitePlayerToHouse(invitePlayerToHouseInput: InvitePlayerToHouseInput!):[Player!]!
-  deleteHouse(houseId:Int!):Boolean!
-}
+    extend type Mutation {
+      createHouse(createHouseInput: CreateHouseInput!):House
+      invitePlayerToHouse(invitePlayerToHouseInput: InvitePlayerToHouseInput!):[Player!]!
+      deleteHouse(houseId:Int!):Boolean!
+      editHouse(editHouseInput: EditHouseInput!):House
+    }
 
-type House {
-  id: Int!
-  name: String!
-  tables: [Table!]!
-  players: [Player!]!
-  owner: Player!
-}
+    type House {
+      id: Int!
+      name: String!
+      tables: [Table!]!
+      players: [Player!]!
+      owner: Player!
+    }
 
-input CreateHouseInput {
-  name: String!
-}
+    input CreateHouseInput {
+      name: String!
+    }
 
-input InvitePlayerToHouseInput{
-  playerId: Int!
-  houseId: Int!
-}
-`;
+    input EditHouseInput {
+      houseId: Int!
+      name: String
+    }
+
+    input InvitePlayerToHouseInput{
+      playerId: Int!
+      houseId: Int!
+    }
+  `,
+  'house',
+);

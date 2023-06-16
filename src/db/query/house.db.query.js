@@ -1,4 +1,6 @@
-import { houseIdField, idField, ownerIdField } from '#db/const/fields.db.const.js';
+import {
+  houseIdField, idField, nameField, ownerIdField,
+} from '#db/const/fields.db.const.js';
 import { houseGrid, playerGrid } from '#db/const/grids.db.const.js';
 
 export const createHouseGrid = `
@@ -18,4 +20,10 @@ export const createHouse = `
 export const deleteHouse = `
   DELETE FROM ${houseGrid} 
     WHERE ${idField} = @${houseIdField};
+`;
+
+export const editHouse = `
+  UPDATE ${houseGrid} 
+    SET ${nameField} = @${nameField} 
+    WHERE ${idField} = @${houseIdField}
 `;

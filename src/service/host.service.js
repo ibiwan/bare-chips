@@ -16,11 +16,18 @@ export const makeHostService = ({ playerRepo: _playerRepo, houseRepo }) =>
       * @param {*} ownerId
       */
     createHouse: (data, ownerId) => {
-      console.log('house.service.createHouse', { data });
       const newId = houseRepo.create({ ...data, ownerId });
-      const newHouse = houseRepo.getById(newId);
+      return houseRepo.getById(newId);
+    },
+    /**
+     * @param {{houseId, name}} data
+     * @param {*} _ownerId
+     */
+    editHouse: ({ houseId, ...editData }, _ownerId) => {
+      const success = houseRepo.edit(houseId, editData);
+      if (!success) { throw new Error('could not edit house'); }
 
-      return newHouse;
+      return houseRepo.getById(houseId);
     },
     deleteHouse: (houseId, _ownerId) =>
       houseRepo.deleteById(houseId),

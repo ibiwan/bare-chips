@@ -1,10 +1,9 @@
 export const debugExpress = (req, _res, next) => {
-  console.debug('debug: ');
-  console.debug('  u+m: ', req.url, req.method);
+  console.debug('\n*u+m: ', req.url, req.method);
 
   if (req?.body?.operationName) {
     console.debug(
-      '  op: ',
+      '*op: ',
       req?.body?.operationName,
       //     '  q: ',
       //     req?.body?.query,

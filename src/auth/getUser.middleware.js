@@ -14,7 +14,7 @@ export const getUser = (req, _res, next) => {
     next();
     return;
   }
-  console.debug({ auth });
+  console.debug(auth.substring(0, 20));
 
   if (!auth) {
     console.info('no auth header; not injecting user');

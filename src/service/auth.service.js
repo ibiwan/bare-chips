@@ -22,7 +22,7 @@ export const makeAuthService = ({ playerService }) =>
           sub: player.id,
         },
         jwtSigningSecret,
-        { expiresIn: '10s' },
+        { expiresIn: '10m' },
       );
       const { exp: expiry } = jwt.decode(token, { json: true });
 

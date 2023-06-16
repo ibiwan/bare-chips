@@ -11,6 +11,8 @@ export const houseResolvers = {
   Mutation: {
     createHouse: mr(({ input: { createHouseInput }, hostService, authuser }) =>
       hostService.createHouse(createHouseInput, authuser.id)),
+    editHouse: mr(({ input: { editHouseInput }, hostService, authuser }) =>
+      hostService.editHouse(editHouseInput, authuser.id)),
     deleteHouse: mr(({ input: { houseId }, hostService, authuser }) =>
       hostService.deleteHouse(houseId, authuser.id)),
     invitePlayerToHouse: mr(({ input: { playerId, houseId }, hostService, authuser }) =>

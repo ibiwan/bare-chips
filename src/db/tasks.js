@@ -32,7 +32,7 @@ export const createDollar = (db) => {
   try {
     db.prepare(populateCurrencyGrid).run();
   } catch (e) {
-    console.log("couldn't create dollar", e);
+    console.error("couldn't create dollar", e);
   }
 };
 

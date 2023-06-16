@@ -1,7 +1,7 @@
 import { idField } from '#db/const/fields.db.const.js';
 import { houseGrid } from '#db/const/grids.db.const.js';
 import { selectAll, selectBy } from '#db/query/_common.db.query.js';
-import { createHouse, deleteHouse } from '#db/query/house.db.query.js';
+import { createHouse, deleteHouse, editHouse } from '#db/query/house.db.query.js';
 import { invitePlayerToHouse } from '#db/query/peoplejoins/house_to_players.db.query.js';
 
 // created with owner
@@ -24,6 +24,10 @@ export const makeHouseRepo = ({ dbService: { db } }) =>
       const { changes, lastInsertRowid } = db.prepare(createHouse).run(data);
       if (changes !== 1) { throw new Error('could not create house'); }
       return lastInsertRowid;
+    },
+    edit: (houseId, { name }) => {
+      const { changes } = db.prepare(editHouse).run({ houseId, name });
+      return changes > 0;
     },
     deleteById: (houseId) => {
       const { changes } = db.prepare(deleteHouse).run({ houseId });
