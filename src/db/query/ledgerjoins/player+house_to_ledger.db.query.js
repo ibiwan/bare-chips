@@ -8,7 +8,7 @@ export const createPlayerHouseLedgerJoinGrid = `
   CREATE TABLE IF NOT EXISTS ${playerJoinHouseJoinLedger} (
     ${idField} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${playerIdField} INTEGER NOT NULL,
-    ${houseIdField}INTEGER NOT NULL,
+    ${houseIdField} INTEGER NOT NULL,
     ${ledgerIdField} INTEGER NOT NULL,
 
     FOREIGN KEY (${playerIdField}) REFERENCES ${playerGrid}(${idField}),

@@ -5,8 +5,8 @@ import { houseJoinDesign } from '#db/const/joins.db.const.js';
 export const createHouseDesignJoinGrid = `
     CREATE TABLE IF NOT EXISTS ${houseJoinDesign} (
       ${idField} INTEGER PRIMARY KEY AUTOINCREMENT,
-      ${houseIdField}INTEGER NOT NULL,
-      ${designIdField}INTEGER NOT NULL,
+      ${houseIdField} INTEGER NOT NULL,
+      ${designIdField} INTEGER NOT NULL,
 
       FOREIGN KEY (${houseIdField}) REFERENCES ${houseGrid}(${idField}),
       FOREIGN KEY (${designIdField}) REFERENCES ${designGrid}(${idField}),

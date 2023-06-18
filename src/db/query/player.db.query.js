@@ -13,7 +13,7 @@ export const createPlayerGrid = `
   CREATE TABLE IF NOT EXISTS ${playerGrid} (
     ${idField} INTEGER PRIMARY KEY AUTOINCREMENT, 
     username TEXT UNIQUE, 
-    passhash STRING,
+    passhash TEXT,
     isAdmin INTEGER NOT NULL DEFAULT 0
   );`;
 

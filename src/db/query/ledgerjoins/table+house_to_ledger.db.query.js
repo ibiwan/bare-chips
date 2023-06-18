@@ -9,7 +9,7 @@ export const createTableJoinHouseJoinLedgerGrid = `
   CREATE TABLE IF NOT EXISTS ${tableJoinHouseJoinLedger} (
     ${idField} INTEGER PRIMARY KEY AUTOINCREMENT,
     ${tableIdField} INTEGER NOT NULL,
-    ${houseIdField}INTEGER NOT NULL,
+    ${houseIdField} INTEGER NOT NULL,
     ${ledgerIdField} INTEGER NOT NULL,
 
     FOREIGN KEY (${tableIdField}) REFERENCES ${tableGrid}(${idField}),

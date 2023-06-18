@@ -4,21 +4,22 @@ export const houseTypeDefs = parseGql(
   `#graphql
     extend type Query {
       getAllHouses: [House!]!
+      getHouseById(houseId:Int!):House
     }
 
     extend type Mutation {
       createHouse(createHouseInput: CreateHouseInput!):House
-      invitePlayerToHouse(invitePlayerToHouseInput: InvitePlayerToHouseInput!):[Player!]!
       deleteHouse(houseId:Int!):Boolean!
       editHouse(editHouseInput: EditHouseInput!):House
+      createPlayerHouseLink(createPlayerHouseLinkInput: CreatePlayerHouseLinkInput!):House
     }
 
     type House {
       id: Int!
       name: String!
       tables: [Table!]!
-      players: [Player!]!
       owner: Player!
+      playerLinks: [PlayerHouseLink!]!
     }
 
     input CreateHouseInput {
@@ -30,9 +31,30 @@ export const houseTypeDefs = parseGql(
       name: String
     }
 
-    input InvitePlayerToHouseInput{
+    type PlayerHouseLink {
+      id: Int!
+      player: Player!
+      house: House!
+      status:  HousePlayerInviteMode!
+    }
+
+    input CreatePlayerHouseLinkInput{
       playerId: Int!
       houseId: Int!
+      status: HousePlayerInitialInviteMode!
+    }
+
+    enum HousePlayerInitialInviteMode {
+      INVITED
+      REQUESTED
+    }
+
+    enum HousePlayerInviteMode {
+      INVITED
+      REQUESTED
+      MEMBER
+      PRESENT
+      BANNED
     }
   `,
   'house',

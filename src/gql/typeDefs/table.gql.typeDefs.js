@@ -17,6 +17,7 @@ export const tableTypeDefs = parseGql(
       houseId: Int!
       players: [Player!]!
     }
+
     input CreateTableInput {
       name: String!
     }

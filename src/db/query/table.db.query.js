@@ -14,7 +14,7 @@ export const createTableGrid = `
   CREATE TABLE IF NOT EXISTS ${tableGrid} (
     ${idField} INTEGER PRIMARY KEY AUTOINCREMENT, 
     name TEXT UNIQUE,
-    ${designIdField}INTEGER,
+    ${designIdField} INTEGER,
     ${activeGameIdField} INTEGER,
     ${ownerIdField} INTEGER,
 

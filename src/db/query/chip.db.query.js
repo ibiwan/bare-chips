@@ -8,7 +8,7 @@ export const createChipGrid = `
     ${idField} INTEGER PRIMARY KEY,
     ${colorField} TEXT, 
     ${valueField} INTEGER, 
-    ${designIdField}INTEGER, 
+    ${designIdField} INTEGER, 
 
     FOREIGN KEY (${designIdField}) REFERENCES ${designGrid}(${idField})
 );`;

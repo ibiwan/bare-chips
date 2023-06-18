@@ -31,6 +31,15 @@ export const makeHostService = ({ playerRepo: _playerRepo, houseRepo }) =>
     },
     deleteHouse: (houseId, _ownerId) =>
       houseRepo.deleteById(houseId),
-    invitePlayerToHouse: ({ actorId: _actorId, playerId, houseId }) =>
-      houseRepo.invitePlayer({ playerId, houseId }),
+    createPlayerHouseLink: ({
+      actorId: _actorId, playerId, houseId, status,
+    }) => {
+      const success = houseRepo.createPlayerHouseLink({ playerId, houseId, status });
+      if (success) {
+        return houseRepo.getById(houseId);
+      }
+      return null;
+    },
+    getPlayerLinks: (house) =>
+      houseRepo.getPlayerLinks(house.id),
   });

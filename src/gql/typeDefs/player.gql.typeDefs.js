@@ -5,7 +5,7 @@ export const playerTypeDefs = parseGql(
     extend type Query {
       getAllPlayers: [Player!]!
       getCurrentPlayer: Player
-      getPlayerById: Player
+      getPlayerById(playerId:Int): Player
       getPlayersByTableId: [Player!]!
     }
 

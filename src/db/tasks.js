@@ -12,8 +12,12 @@ const admin = {
 
 export const createTables = (db) => {
   schemae.forEach((script) => {
-    // console.debug({ script });
-    db.exec(script);
+    // console.debug({ script })
+    try {
+      db.exec(script);
+    } catch (e) {
+      console.error('error running db script', e, script);
+    }
   });
 };
 

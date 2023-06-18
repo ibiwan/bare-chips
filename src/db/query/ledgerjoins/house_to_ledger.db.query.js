@@ -5,7 +5,7 @@ import { houseJoinLedger } from '#db/const/joins.db.const.js';
 export const createHouseLedgerJoinGrid = `
   CREATE TABLE IF NOT EXISTS ${houseJoinLedger} (
     ${idField} INTEGER PRIMARY KEY AUTOINCREMENT,
-    ${houseIdField}INTEGER NOT NULL,
+    ${houseIdField} INTEGER NOT NULL,
     ${ledgerIdField} INTEGER NOT NULL,
 
     FOREIGN KEY (${houseIdField}) REFERENCES ${houseGrid}(${idField}),

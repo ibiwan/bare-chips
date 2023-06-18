@@ -28,6 +28,7 @@ export const amountField = 'amount';
 export const colorField = 'color';
 export const descField = 'desc';
 export const nameField = 'name';
+export const statusField = 'status';
 export const usernameField = 'username';
 export const valueField = 'value';
 // #endregion
