@@ -1,6 +1,8 @@
+export const authRouteString = 'auth/login';
+
 export const loginRoute = (app) => {
   app.post(
-    '/auth/login',
+    authRouteString,
     async (req, res, _next) => {
       const {
         context: { di },
